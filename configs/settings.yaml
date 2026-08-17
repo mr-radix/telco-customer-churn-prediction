@@ -1,0 +1,22 @@
+project:
+  name: "Customer Churn Prediction & Business Insights"
+  version: "1.0.0"
+  random_seed: 42
+
+data:
+  raw_path: "data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv"
+  processed_dir: "data/processed"
+  target_col: "Churn"
+  test_size: 0.15
+  val_size: 0.15
+
+modeling:
+  models_dir: "models"
+  primary_metric: "Recall"
+  xgboost:
+    n_estimators: 150
+    max_depth: 4
+    learning_rate: 0.05
+
+streamlit:
+  port: 8501
