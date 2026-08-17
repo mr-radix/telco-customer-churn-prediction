@@ -230,11 +230,11 @@ Customer-Churn-Prediction-Business-Insights/
 git clone https://github.com/YOUR_USERNAME/telco-customer-churn-prediction.git
 cd telco-customer-churn-prediction
 
-
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
+
 
 ### 2. Data Preparation & Model Training
 ```bash
