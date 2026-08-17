@@ -9,10 +9,13 @@
 
 An enterprise-grade, end-to-end Machine Learning pipeline and executive business analysis for predicting subscription customer churn. Driven by **Gradient Boosting**, **Permutation Feature Importance**, **Statistical EDA**, and an interactive **Streamlit Risk Dashboard**.
 
+👉 **[Complete Technical Knowledge Base & Deep Dive Notes (NOTES.md)](NOTES.md)**
+
 ---
 
 <a id="table-of-contents"></a>
 ## 📌 Table of Contents
+- [Master Knowledge Base (NOTES.md)](NOTES.md)
 - [Executive Summary: Business Problem & ML Solution](#executive-summary)
 - [Master Deliverable: Lifecycle Notebook](#master-deliverable)
 - [Project Architecture & Mindmap](#project-architecture)
@@ -28,6 +31,7 @@ An enterprise-grade, end-to-end Machine Learning pipeline and executive business
 - [Repository File Layout](#repository-layout)
 - [Quickstart & Reproduction Guide](#quickstart-guide)
 - [License](#license)
+
 
 ---
 
@@ -331,9 +335,11 @@ Customer-Churn-Prediction-Business-Insights/
 │   └── test_models.py                       # Pytest unit tests for model training & evaluation
 ├── .gitignore                               # Git ignore specification
 ├── LICENSE                                  # MIT Open Source License
+├── NOTES.md                                 # Master Technical Knowledge Base & Deep Dive Notes
 ├── requirements.txt                         # Dependency version specifications
 └── README.md                                # Master project documentation (this file)
 ```
+
 
 ---
 
