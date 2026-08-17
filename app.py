@@ -53,7 +53,8 @@ def main():
     st.title("🔮 Telco Customer Churn Risk Scoring & Insights Dashboard")
     st.markdown("""
     Real-time customer churn probability scoring, risk tier classification, automated recommendations, and technical model design explanations.
-    *Master Notebook*: [`notebooks/master_churn_prediction_lifecycle.ipynb`](file:///home/mrradix/Projects/Ai-ML/notebooks/master_churn_prediction_lifecycle.ipynb)
+    *Master Notebook*: [`notebooks/master_churn_prediction_lifecycle.ipynb`](notebooks/master_churn_prediction_lifecycle.ipynb)
+
     """)
     
     model, preprocessor, feature_names = load_model_artifacts()

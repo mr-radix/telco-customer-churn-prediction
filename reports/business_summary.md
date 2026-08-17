@@ -3,7 +3,8 @@
 **Author**: Senior Data Science & Machine Learning Engineering Team  
 **Target Audience**: Executive Leadership, Head of Customer Success, VP of Product  
 **Date**: August 2026  
-**Primary Master Deliverable**: [notebooks/master_churn_prediction_lifecycle.ipynb](file:///home/mrradix/Projects/Ai-ML/notebooks/master_churn_prediction_lifecycle.ipynb)
+**Primary Master Deliverable**: [notebooks/master_churn_prediction_lifecycle.ipynb](notebooks/master_churn_prediction_lifecycle.ipynb)
+
 
 ---
 
@@ -20,7 +21,7 @@ Our tuned **Gradient Boosting model** achieved an **81.4% Recall** and **0.813 R
 
 ## 2. Key Structural Churn Drivers
 
-Through permutation feature importance and SHAP analysis in [notebooks/03_explainability.ipynb](file:///home/mrradix/Projects/Ai-ML/notebooks/03_explainability.ipynb), we identified 4 primary structural churn drivers:
+Through permutation feature importance and SHAP analysis in [notebooks/master_churn_prediction_lifecycle.ipynb](notebooks/master_churn_prediction_lifecycle.ipynb), we identified 4 primary structural churn drivers:
 
 ```
 +------------------------------------------------------------------------------------------------+
@@ -42,7 +43,8 @@ Through permutation feature importance and SHAP analysis in [notebooks/03_explai
 
 ## 3. Model Output & Risk Classification Architecture
 
-Every customer account processed through the production pipeline ([app.py](file:///home/mrradix/Projects/Ai-ML/app.py)) receives two outputs:
+Every customer account processed through the production pipeline ([app.py](app.py)) receives two outputs:
+
 
 1. **Continuous Churn Probability Score**: A calibrated float value between `0.00` and `1.00` (e.g., `0.845` = 84.5% churn risk).
 2. **Risk Classification Tier & Automated Action**:
