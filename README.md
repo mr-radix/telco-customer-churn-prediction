@@ -11,25 +11,27 @@ An enterprise-grade, end-to-end Machine Learning pipeline and executive business
 
 ---
 
+<a id="table-of-contents"></a>
 ## 📌 Table of Contents
-- [Executive Summary: Business Problem & ML Solution](#-executive-summary-business-problem--ml-solution)
-- [Master Deliverable: Lifecycle Notebook](#-master-deliverable-lifecycle-notebook)
-- [Project Architecture & Mindmap](#-project-architecture--mindmap)
-- [Batch Processing Workflow](#-batch-processing-workflow)
-- [Real-Time Web Inference Workflow](#-real-time-web-inference-workflow)
-- [Technical Design Matrix ("Why X vs Why Not Y")](#-technical-design-matrix-why-x-vs-why-not-y)
-- [Exploratory Data Analysis & Visualizations](#-exploratory-data-analysis--visualizations)
-- [Model Evaluation & Confusion Matrix](#-model-evaluation--confusion-matrix)
-- [Machine Learning Model Deep Dive](#-machine-learning-model-architecture--technical-deep-dive)
-
-- [Top Structural Churn Drivers & Feature Importance](#-top-structural-churn-drivers--feature-importance)
-- [Real-Time Model Output & Risk Tiering](#-real-time-model-output--risk-tiering)
-- [Quantified Financial ROI & Strategy](#-quantified-financial-roi--strategy)
-- [Repository File Layout](#-repository-file-layout)
-- [Quickstart & Reproduction Guide](#-quickstart--reproduction-guide)
+- [Executive Summary: Business Problem & ML Solution](#executive-summary)
+- [Master Deliverable: Lifecycle Notebook](#master-deliverable)
+- [Project Architecture & Mindmap](#project-architecture)
+- [Batch Processing Workflow](#batch-processing-workflow)
+- [Real-Time Web Inference Workflow](#real-time-workflow)
+- [Technical Design Matrix ("Why X vs Why Not Y")](#technical-design-matrix)
+- [Exploratory Data Analysis & Visualizations](#exploratory-data-analysis)
+- [Model Evaluation & Confusion Matrix](#model-evaluation)
+- [Machine Learning Model Deep Dive](#model-deep-dive)
+- [Top Structural Churn Drivers & Feature Importance](#churn-drivers)
+- [Real-Time Model Output & Risk Tiering](#risk-tiering)
+- [Quantified Financial ROI & Strategy](#financial-roi)
+- [Repository File Layout](#repository-layout)
+- [Quickstart & Reproduction Guide](#quickstart-guide)
+- [License](#license)
 
 ---
 
+<a id="executive-summary"></a>
 ## 🎯 Executive Summary: Business Problem & ML Solution
 
 ### 🚨 The Business Problem
@@ -64,6 +66,7 @@ This project transitions the enterprise from a reactive offboarding model to an 
 
 ---
 
+<a id="master-deliverable"></a>
 ## 📌 Master Deliverable: Lifecycle Notebook
 
 The primary deliverable of this repository is the **Single Master Data Science Lifecycle Notebook**:  
@@ -86,6 +89,7 @@ The primary deliverable of this repository is the **Single Master Data Science L
 
 ---
 
+<a id="project-architecture"></a>
 ## 🧠 Project Architecture & Mindmap
 
 An overview of the entire system architecture across data processing, feature engineering, model tuning, risk scoring, business strategy, and model deployment:
@@ -94,6 +98,7 @@ An overview of the entire system architecture across data processing, feature en
 
 ---
 
+<a id="batch-processing-workflow"></a>
 ## 🔄 Batch Processing Workflow
 
 The sequential pipeline logic executing raw dataset ingestion, zero-leakage preprocessing, model benchmarking, hyperparameter tuning, and binary artifact export:
@@ -102,6 +107,7 @@ The sequential pipeline logic executing raw dataset ingestion, zero-leakage prep
 
 ---
 
+<a id="real-time-workflow"></a>
 ## ⚡ Real-Time Web Inference Workflow
 
 The real-time prediction and automated recommendation workflow powering the interactive Streamlit dashboard (`app.py`):
@@ -110,6 +116,7 @@ The real-time prediction and automated recommendation workflow powering the inte
 
 ---
 
+<a id="technical-design-matrix"></a>
 ## 🧠 Technical Design Matrix ("Why X vs Why Not Y")
 
 Every engineering decision throughout this pipeline is explicitly justified to provide full transparency:
@@ -127,6 +134,7 @@ Every engineering decision throughout this pipeline is explicitly justified to p
 
 ---
 
+<a id="exploratory-data-analysis"></a>
 ## 📊 Exploratory Data Analysis & Visualizations
 
 ### 1. Target Class Distribution (26.5% Baseline Churn)
@@ -140,6 +148,7 @@ Every engineering decision throughout this pipeline is explicitly justified to p
 
 ---
 
+<a id="model-evaluation"></a>
 ## 📈 Model Evaluation & Confusion Matrix
 
 Models were trained on 70% of the dataset and evaluated on an unseen Holdout Test Split (15% of data):
@@ -156,6 +165,7 @@ Models were trained on 70% of the dataset and evaluated on an unseen Holdout Tes
 
 ---
 
+<a id="model-deep-dive"></a>
 ## 🔬 Machine Learning Model Architecture & Technical Deep Dive
 
 ### 1. Model Mechanics: Why Gradient Boosting?
@@ -219,6 +229,7 @@ param_grid = {
 
 ---
 
+<a id="churn-drivers"></a>
 ## 🔍 Top Structural Churn Drivers & Feature Importance
 
 Permutation feature importance and SHAP analysis reveal the top structural drivers of customer churn:
@@ -232,6 +243,7 @@ Permutation feature importance and SHAP analysis reveal the top structural drive
 
 ---
 
+<a id="risk-tiering"></a>
 ## 🎯 Real-Time Model Output & Risk Tiering
 
 For every customer account processed through the production pipeline ([app.py](app.py)), the model delivers two attributes:
@@ -247,6 +259,7 @@ For every customer account processed through the production pipeline ([app.py](a
 
 ---
 
+<a id="financial-roi"></a>
 ## 💰 Quantified Financial ROI & Strategy
 
 Assuming an average monthly customer revenue of **$65** ($780/year) and an annual churn pool of **1,800 customers** ($1.4M ARR):
@@ -266,6 +279,7 @@ Assuming an average monthly customer revenue of **$65** ($780/year) and an annua
 
 ---
 
+<a id="repository-layout"></a>
 ## 📁 Repository File Layout
 
 ```
@@ -323,6 +337,7 @@ Customer-Churn-Prediction-Business-Insights/
 
 ---
 
+<a id="quickstart-guide"></a>
 ## ⚡ Quickstart & Reproduction Guide
 
 ### 1. Setup Environment
@@ -361,5 +376,6 @@ Open **`http://localhost:8501`** in your browser to score customer churn probabi
 
 ---
 
+<a id="license"></a>
 ## 📄 License
 Distributed under the MIT License. See [LICENSE](LICENSE) for full details.
