@@ -20,6 +20,7 @@ An enterprise-grade, end-to-end Machine Learning pipeline and executive business
 - [Technical Design Matrix ("Why X vs Why Not Y")](#-technical-design-matrix-why-x-vs-why-not-y)
 - [Exploratory Data Analysis & Visualizations](#-exploratory-data-analysis--visualizations)
 - [Model Evaluation & Confusion Matrix](#-model-evaluation--confusion-matrix)
+- [Machine Learning Model Deep Dive](#-machine-learning-model-architecture--technical-deep-dive)
 - [Top Structural Churn Drivers & Feature Importance](#-top-structural-churn-drivers--feature-importance)
 - [Real-Time Model Output & Risk Tiering](#-real-time-model-output--risk-tiering)
 - [Quantified Financial ROI & Strategy](#-quantified-financial-roi--strategy)
@@ -151,6 +152,69 @@ Models were trained on 70% of the dataset and evaluated on an unseen Holdout Tes
 
 ### Confusion Matrix on Holdout Test Set
 ![Gradient Boosting Confusion Matrix](reports/figures/05_confusion_matrix.png)
+
+---
+
+## 🔬 Machine Learning Model Architecture & Technical Deep Dive
+
+### 1. Model Mechanics: Why Gradient Boosting?
+Gradient Boosting works by sequentially training an ensemble of decision trees $F_m(x)$ to iteratively minimize log-loss $L(y, \hat{y})$ via gradient descent in function space:
+
+$$\hat{y}_i^{(m)} = \hat{y}_i^{(m-1)} + \eta \cdot h_m(x_i)$$
+
+Where $h_m(x_i)$ is a decision tree fit to the pseudo-residuals (gradients of log-loss):
+
+$$r_{im} = -\left[ \frac{\partial L(y_i, f(x_i))}{\partial f(x_i)} \right]_{f=F_{m-1}}$$
+
+#### Technical Advantages over Other Architectures:
+- **Non-Linear Thresholding**: Successfully captures non-linear step-functions (e.g. sharp decrease in churn probability after Month 12 tenure) without requiring manual polynomial feature engineering.
+- **Higher-Order Feature Interactions**: Automatically discovers multi-variable interaction terms (e.g. `Fiber Optic Internet` AND `No Tech Support` AND `Month-to-Month Contract`).
+- **Resilience to Variance Outliers**: Decision tree split decisions rely on rank-order monotonic splits, making boosting robust against extreme variance in `MonthlyCharges` or `TotalCharges`.
+
+---
+
+### 2. Comparative Benchmarking Rationale
+We evaluated 4 distinct model families under identical zero-leakage conditions (fit exclusively on the 70% train split):
+
+1. **Baseline Majority Classifier**:
+   - Predicts `Churn = No` for all accounts.
+   - **Performance**: Accuracy 55.9%, Recall **0.0%**.
+   - **Takeaway**: Serves as the performance floor. Fails completely at identifying churners.
+
+2. **Logistic Regression (L2 Regularized)**:
+   - Fits a linear decision boundary: $\log\left(\frac{p}{1-p}\right) = \beta_0 + \sum \beta_i X_i$.
+   - **Performance**: Accuracy 75.2%, Recall **75.1%**, ROC-AUC **0.815**.
+   - **Takeaway**: Fast linear baseline, but underperformed on complex feature interactions.
+
+3. **Random Forest Classifier**:
+   - Bagging ensemble of 100 deep decision trees trained on bootstrap samples.
+   - **Performance**: Accuracy 74.4%, Recall **75.4%**, ROC-AUC **0.809**.
+   - **Takeaway**: High stability, but exhibited slight overfitting compared to boosting.
+
+4. **Gradient Boosting Classifier (Selected Production Model)**:
+   - Additive boosting ensemble of shallow decision trees tuned with class weights.
+   - **Performance**: Accuracy 73.5%, Recall **81.4%**, ROC-AUC **0.8128**.
+   - **Takeaway**: **Selected for production deployment**. Achieves highest recall (+81.4% gain over baseline), identifying 4 out of 5 churning accounts prior to cancellation.
+
+---
+
+### 3. Hyperparameter Tuning via 5-Fold GridSearchCV
+We performed 5-fold Stratified Cross-Validation tuning over the hyperparameter space:
+
+```python
+param_grid = {
+    'learning_rate': [0.01, 0.05, 0.1],      # Step size shrinkage factor protecting against overfitting
+    'max_depth': [3, 5, 7],                  # Tree depth restricting maximum interaction order
+    'min_samples_leaf': [10, 20, 50],        # Minimum samples required per leaf node
+    'class_weight': ['balanced'],            # Penalizes False Negatives 2.8x more heavily in loss calculation
+}
+```
+
+- **Optimal Production Hyperparameters**:
+  - `learning_rate`: `0.05`
+  - `max_depth`: `5`
+  - `min_samples_leaf`: `20`
+  - `class_weight`: `'balanced'`
 
 ---
 
