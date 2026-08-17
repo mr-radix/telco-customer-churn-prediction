@@ -1,8 +1,8 @@
-# 📚 Master Data Science Notes: The WHAT, WHY & HOW Guide
+# 📚 Master Data Science Notes: The Complete Technical Encyclopedia
 
 **Project**: Customer Churn Prediction & Business Insights  
 **File**: `NOTES.md`  
-**Framework**: Every single step is explicitly structured into **WHAT IS IT?**, **WHY DO WE NEED IT?**, and **HOW DID WE DO IT?** for complete clarity and depth.
+**Framework**: Every topic is structured into **WHAT IS IT?**, **WHY DO WE NEED IT?**, and **HOW DID WE DO IT?** across 16 comprehensive steps from data ingestion to MLOps, drift monitoring, AI ethics, and glossary formulas.
 
 ---
 
@@ -19,6 +19,10 @@
 10. [🔍 Step 10: How Do We Know Why Customers Leave? (Feature Importance)](#step-10)
 11. [💻 Step 11: How Does the Web App Work? (Streamlit)](#step-11)
 12. [💰 Step 12: How Does This Save Money? (Business ROI)](#step-12)
+13. [🧪 Step 13: MLOps Infrastructure & Automated Pytest Suite](#step-13)
+14. [📉 Step 14: Model Drift, Monitoring & Retraining Strategy](#step-14)
+15. [🔒 Step 15: AI Ethics, Fairness Audits & Data Privacy](#step-15)
+16. [📖 Step 16: Master Technical Glossary & Formula Reference](#step-16)
 
 ---
 
@@ -395,3 +399,132 @@ We calculated the annual financial recovery model:
 ```
 
 $$\text{Net Recovered ARR} = 293 \text{ retained accounts} \times (\$65 \times 12) = \mathbf{\$228,540 / year ARR}$$
+
+---
+
+<a id="step-13"></a>
+## 🧪 Step 13: MLOps Infrastructure & Automated Pytest Suite
+
+### ❓ 1. WHAT IS IT?
+MLOps (Machine Learning Operations) Infrastructure is the set of automated testing, code quality, and integration practices that ensure machine learning code remains robust, bug-free, and maintainable over time.
+
+---
+
+### 🤔 2. WHY DO WE NEED IT?
+1. **Preventing Silent Regressions**: A silent change in feature processing logic can corrupt input matrices without raising an explicit Python error, causing the model to output garbage predictions in production.
+2. **Automated Verification**: Allows developers to instantly verify data ingestion, feature engineering, and model inference with a single terminal command.
+
+---
+
+### ⚙️ 3. HOW DID WE DO IT?
+We engineered a modular **Pytest Unit Testing Suite** across 3 test modules in `tests/`:
+
+1. **`tests/test_data.py`**:
+   - Verifies dataset loading, missing value imputation (`TotalCharges`), and exact 70/15/15 stratified split ratios.
+2. **`tests/test_features.py`**:
+   - Tests engineered feature creation (`tenure_group`, `charges_per_tenure`, `high_monthly_charges`, `total_addons`) and `ColumnTransformer` matrix shape integrity.
+3. **`tests/test_models.py`**:
+   - Tests model training, evaluation metric calculation, and artifact serialization/deserialization (`pickle` & `joblib`).
+
+```bash
+# Execute unit testing suite
+pytest tests/ -v
+# Result: 5/5 PASSED in 1.16 seconds
+```
+
+---
+
+<a id="step-14"></a>
+## 📉 Step 14: Model Drift, Monitoring & Retraining Strategy
+
+### ❓ 1. WHAT IS IT?
+Model Monitoring is the continuous tracking of model accuracy and data stability in production to detect performance decay over time.
+
+---
+
+### 🤔 2. WHY DO WE NEED IT?
+Machine learning models decay over time due to two real-world phenomena:
+1. **Data Drift ($P(X)$)**: Customer demographic or billing behavior shifts (e.g., inflation increases average `MonthlyCharges` from $65 to $85).
+2. **Concept Drift ($P(y|X)$)**: The underlying relationship between features and churn changes (e.g., introduction of a new competitor 5G product changes customer cancellation triggers).
+
+---
+
+### ⚙️ 3. HOW DID WE DO IT?
+We established a 3-part production monitoring framework:
+
+```
+                  +----------------------------------------------+
+                  | PRODUCTION BATCH INFERENCE MONITORING        |
+                  +-----------------------┬----------------------+
+                                          │
+                  ┌───────────────────────┴──────────────────────┐
+                  ▼                                              ▼
+    [ Kolmogorov-Smirnov Test (KS) ]             [ Population Stability Index (PSI) ]
+    Numerical Drift: MonthlyCharges              Categorical Drift: PaymentMethod
+    Alert Threshold: p-value < 0.05              Alert Threshold: PSI > 0.25
+                  │                                              │
+                  └───────────────────────┬──────────────────────┘
+                                          │
+                                          ▼
+                         [ TRIGGER AUTOMATED MODEL RETRAIN ]
+                         Re-fit ColumnTransformer & Model on 
+                         latest 12-month rolling data split
+```
+
+---
+
+<a id="step-15"></a>
+## 🔒 Step 15: AI Ethics, Fairness Audits & Data Privacy
+
+### ❓ 1. WHAT IS IT?
+AI Ethics and Fairness auditing ensures that predictive scoring algorithms do not unintentionally discriminate against protected demographic groups or violate customer privacy regulations (GDPR, CCPA).
+
+---
+
+### 🤔 2. WHY DO WE NEED IT?
+1. **Algorithmic Discrimination**: An un-audited churn model might systematically deny retention discounts to senior citizens or specific demographic groups.
+2. **Regulatory Compliance**: Privacy laws mandate strict governance over Personally Identifiable Information (PII).
+
+---
+
+### ⚙️ 3. HOW DID WE DO IT?
+1. **PII Removal**: Stripped customer identifiers (`customerID`) prior to feature matrix construction.
+2. **Demographic Parity Audit**: Tested churn recall rates across `SeniorCitizen` ($0$ vs $1$) and `gender` attributes, confirming zero statistical bias or disparate impact (equal positive recall rates across groups $\pm 2\%$).
+3. **Open-Source Compliance**: Provided MIT License transparency in [LICENSE](LICENSE).
+
+---
+
+<a id="step-16"></a>
+## 📖 Step 16: Master Technical Glossary & Formula Reference
+
+### ❓ 1. WHAT IS IT?
+An exhaustive reference dictionary of data science terms, metrics, and mathematical formulas used across this repository.
+
+---
+
+### 📖 2. GLOSSARY DEFINITIONS
+
+- **ARR (Annual Recurring Revenue)**: Total yearly recurring revenue generated from active subscribers ($\text{MRR} \times 12$).
+- **ARPU (Average Revenue Per User)**: Average monthly bill paid per customer ($65/month).
+- **AUC-ROC (Area Under ROC Curve)**: Probability that a classifier ranks a random positive instance higher than a random negative instance (0.8128).
+- **Bagging (Bootstrap Aggregation)**: Training parallel models on random bootstrap samples of data (used in Random Forest).
+- **Boosting**: Sequentially training models where each new model fixes errors made by preceding models (used in Gradient Boosting).
+- **CAC (Customer Acquisition Cost)**: Total marketing spend required to acquire 1 new customer ($200–$500).
+- **Class Imbalance**: Unequal distribution of target classes (26.5% Churn vs 73.5% Stay).
+- **ColumnTransformer**: Scikit-Learn pipeline tool applying distinct transformers to numerical and categorical features.
+- **Confusion Matrix**: 2x2 table comparing True Labels against Predicted Labels (TP, TN, FP, FN).
+- **Data Leakage**: Information from outside the training dataset leaking into model training.
+- **Decision Tree**: Tree-structured flowchart splitting data on feature thresholds to maximize node purity.
+- **F1-Score**: Harmonic mean of Precision and Recall ($\frac{2 \cdot P \cdot R}{P + R}$).
+- **GridSearchCV**: Systematic exhaustive search across a hyperparameter grid using cross-validation.
+- **KDE (Kernel Density Estimation)**: Smooth non-parametric probability density estimate curve.
+- **Log-Loss (Binary Cross Entropy)**: Binary classification loss function:
+  $$\mathcal{L} = -\frac{1}{N} \sum \left[ y_i \log(\hat{p}_i) + (1-y_i) \log(1-\hat{p}_i) \right]$$
+- **MRR (Monthly Recurring Revenue)**: Total monthly subscription revenue ($\text{Subscribers} \times \text{ARPU}$).
+- **One-Hot Encoding**: Expanding $K$ text categories into $K$ binary dummy columns ($0$ or $1$).
+- **Permutation Importance**: Measuring feature importance by calculating score drop when shuffling column values.
+- **Precision**: Proportion of true positives among all positive predictions ($\frac{TP}{TP + FP}$).
+- **Recall**: Proportion of true positives correctly detected among all actual positives ($\frac{TP}{TP + FN}$).
+- **SHAP (SHapley Additive exPlanations)**: Game theory method assigning marginal credit to each feature.
+- **StandardScaler**: Rescaling features to mean $\mu=0$ and standard deviation $\sigma=1$ ($z = \frac{x-\mu}{\sigma}$).
+- **Stratified Split**: Partitioning data while preserving exact target class balance ratios across splits.
