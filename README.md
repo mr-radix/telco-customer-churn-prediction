@@ -169,7 +169,7 @@ Assuming an average monthly customer revenue of **$65** ($780/year) and an annua
 ## 📁 Repository File Layout
 
 ```
-.
+Customer-Churn-Prediction-Business-Insights/
 ├── app.py                                   # Streamlit interactive web risk scoring dashboard
 ├── mindmap.png                              # Architecture Mindmap diagram visual
 ├── flowchart.png                            # Batch Processing workflow flowchart visual
@@ -227,8 +227,9 @@ Assuming an average monthly customer revenue of **$65** ($780/year) and an annua
 
 ### 1. Setup Environment
 ```bash
-git clone https://github.com/mrradix/Ai-ML.git
-cd Ai-ML
+git clone https://github.com/YOUR_USERNAME/telco-customer-churn-prediction.git
+cd telco-customer-churn-prediction
+
 
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
