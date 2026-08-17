@@ -348,7 +348,7 @@ Customer-Churn-Prediction-Business-Insights/
 
 ### 1. Setup Environment
 ```bash
-git clone https://github.com/YOUR_USERNAME/telco-customer-churn-prediction.git
+git clone https://github.com/mr-radix/telco-customer-churn-prediction.git
 cd telco-customer-churn-prediction
 
 python -m venv venv
