@@ -9,7 +9,6 @@
 
 An enterprise-grade, end-to-end Machine Learning pipeline and executive business analysis for predicting subscription customer churn. Driven by **Gradient Boosting**, **Permutation Feature Importance**, **Statistical EDA**, and an interactive **Streamlit Risk Dashboard**.
 
-👉 **[Complete Technical Knowledge Base & Deep Dive Notes (NOTES.md)](NOTES.md)**
 
 ---
 
