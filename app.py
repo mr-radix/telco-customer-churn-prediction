@@ -60,7 +60,7 @@ def main():
     model, preprocessor, feature_names = load_model_artifacts()
     
     if model is None:
-        st.warning("⚠️ Model artifacts not found. Please train models first using `python -m src.models.train_model` or run `scripts/build_master_notebook.py`.")
+        st.warning("⚠️ Model artifacts not found. Please train models first using `python -m src.models.train_model`.")
         return
 
     st.sidebar.header("📋 Customer Attribute Inputs")

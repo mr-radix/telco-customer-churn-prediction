@@ -318,7 +318,6 @@ Customer-Churn-Prediction-Business-Insights/
 │   │   └── 05_confusion_matrix.png          # Holdout Test set Confusion Matrix heatmap
 │   └── business_summary.md                  # Executive business summary & recommendations
 ├── scripts/
-│   ├── build_master_notebook.py             # Automated builder script for master lifecycle notebook
 │   └── generate_plots.py                    # Script generating publication visualization figures
 ├── src/
 │   ├── data/
@@ -370,7 +369,6 @@ pytest tests/ -v
 
 ### 4. Render Master Lifecycle Notebook
 ```bash
-python scripts/build_master_notebook.py
 jupyter nbconvert --execute --to notebook --inplace notebooks/master_churn_prediction_lifecycle.ipynb
 ```
 
